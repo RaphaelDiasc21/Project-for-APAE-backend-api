@@ -22,3 +22,8 @@ Route::get("/carosel","CaroselController@index");
 Route::post("/admin/carosel","CaroselController@create");
 Route::delete("/admin/carosel/{id_foto}","CaroselController@deleteFoto");
 Route::post("/admin/carosel/{id}","CaroselController@addFoto");
+
+// Estatuto
+Route::get("/estatuto","EstatutoController@index");
+Route::post("/admin/estatuto","EstatutoController@create");
+Route::put("/admin/estatuto","EstatutoController@update");
