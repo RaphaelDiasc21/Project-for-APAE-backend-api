@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Carosel extends Model
 {
-    protected $table = 'carosels';
+    protected $table = 'carosel';
     public $timestamps = false;
 
     public function fotos()

@@ -18,31 +18,31 @@ class GaleriaController extends Controller
     public function index()
     {
         $albuns = $this->galeriaService->getAlbuns();
-        return response()->json(['albuns'=>$albuns],201);
+        return response()->json(['albuns'=>$albuns],201,[],JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
     }
 
     public function album($id)
     {
         $album = $this->galeriaService->getAlbum($id);
-        return response()->json(['album'=>$album],201);
+        return response()->json(['album'=>$album],201,[],JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
     }
 
     public function create(Request $request)
     {
         $album = $this->galeriaService->create($request);
-        return response()->json(['album'=> $album ]);
+        return response()->json(['album'=> $album ],201,[],JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
     }
 
     public function destroy($id)
     {
         $album = $this->galeriaService->destroy($id);
-        return response()->json(['album' => $album]);
+        return response()->json(['album' => $album],201,[],JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
     }
 
     public function update(Request $request,$id)
     {
         $album = $this->galeriaService->update($request,$id);
-        return response()->json(['album'=>$album]);
+        return response()->json(['album'=>$album],201,[],JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
     }
 
     public function addAlbumFoto(Request $request, $id)
@@ -54,6 +54,6 @@ class GaleriaController extends Controller
     public function deleteAlbumFoto($id_foto)
     {
         $foto = $this->galeriaService->deleteFoto($id_foto);
-        return response()->json(["foto"=>$foto],201);
+        return response()->json(["foto"=>$foto],201,[],JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
     }
 }

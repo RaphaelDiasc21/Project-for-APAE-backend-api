@@ -3,8 +3,9 @@
     namespace App\Services;
     use Illuminate\Support\Facades\File; 
     use App\Foto;
+use Illuminate\Support\Facades\DB;
 
-    class FotoService
+class FotoService
     {
         public function uploadFoto($fotos,$entity_id,$repo)
         {
@@ -22,7 +23,7 @@
 
         public function deleteFoto($id,$repo)
         {
-            $fotos = \DB::table('fotos')->where('entity_id',$id)->get()->toArray();
+            $fotos = DB::table('fotos')->where('entity_id',$id)->get()->toArray();
             $this->deleteFileOnServer($fotos,$repo);
         }
 

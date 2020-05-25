@@ -18,20 +18,26 @@ class CaroselController extends Controller
     public function index()
     {
         $albuns = $this->caroselService->getCarosel();
-        return response()->json(['carosel'=>$albuns],201);
+        return response()->json(['carosel'=>$albuns],201,[],JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
     }
 
 
     public function create(Request $request)
     {
         $carosel = $this->caroselService->create($request);
-        return response()->json(['carosel'=> $carosel]);
+        return response()->json(['carosel'=> $carosel],201,[],JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
+    }
+
+    public function destroy($id)
+    {
+        $carosel = $this->caroselService->deleteCarosel($id);
+        return response()->json(['carosel'=> $carosel],201,[],JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
     }
 
     public function deleteFoto($id_foto)
     {
         $foto = $this->caroselService->deleteFoto($id_foto);
-        return response()->json(['foto' => $foto]);
+        return response()->json(['foto' => $foto],201,[],JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
     }
 
     public function addFoto(Request $request,$id)

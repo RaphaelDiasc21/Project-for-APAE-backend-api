@@ -21,9 +21,10 @@ class NoticiaController extends Controller
         return response()->json(['noticias'=>$noticias],201,[],JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
     }
 
-    public function getNoticia(Request $request)
+    public function getNoticia($id)
     {
-        $noticia =  $this->noticiaService->getNoticia($request->id);
+        
+        $noticia =  $this->noticiaService->getNoticia($id);
         return response()->json(['noticia'=>$noticia],201,[],JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
     }
 
@@ -47,7 +48,7 @@ class NoticiaController extends Controller
 
     public function addFoto(Request $request,$id)
     {
-        $this->noticiaService->addFoto($request,$id);
+        $this->noticiaService->addFotos($request,$id);
         return response()->json(['mensagem'=>'Foto adicionada no carosel'],201);
     }
 }

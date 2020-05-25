@@ -47,12 +47,13 @@ class EventoController extends Controller
 
     public function addFoto(Request $request,$id)
     {
-        $album = $this->eventoService->addFoto($request,$id);
-        return response()->json(['mensagem'=>'Foto adicionada no carosel'],201,[],JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
+        $album = $this->eventoService->addFotos($request,$id);
+        return response()->json(['mensagem'=>'Foto adicionada no evento'],201,[],JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
     }
 
-    public function deleteFoto(Request $request,$id)
+    public function deleteFoto(Request $request,$id_foto)
     {
-        $this->eventoService->deleteFoto($id);
+        $this->eventoService->deleteFoto($id_foto);
+        return response()->json(['mensagem'=>'Foto excluida'],201,[],JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);   
     }
 }
