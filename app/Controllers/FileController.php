@@ -6,6 +6,8 @@ use App\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Arquivo;
+use Exception;
+use Illuminate\Support\Facades\File;
 
 class FileController extends Controller
 {
@@ -21,14 +23,31 @@ class FileController extends Controller
 
     public function getFile(Request $request)
     {
-        
-       $arquivo = $request->input('arquivo');
-        return response()->file(public_path('/arquivos/').$arquivo);
+        try{
+            $arquivo = $request->input('arquivo');
+            return response()->file(public_path('/arquivos/').$arquivo);
+        }catch(Exception $e){
+            return response()->json(["erro"=>"Arquivo inexistente"],400);
+        }
+
     }
 
     public function getFiles()
     {
         $arquivo = Arquivo::all();
         return response()->json(['arquivos' => $arquivo]);
+    }
+
+    public function deleteFile($id)
+    {
+        try{
+            $arquivo = Arquivo::find($id);
+            File::delete(public_path('/arquivos/'.$arquivo->path));
+            $arquivo->delete();
+            return $arquivo;
+        }catch(Exception $e){
+            return response()->json(["erro"=>"Arquivo inexistente"]);
+        }
+
     }
 }

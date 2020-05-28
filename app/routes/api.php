@@ -61,3 +61,4 @@ Route::delete("admin/contribuicao","ContribuicaoController@deleteFale");
 Route::get('/transparencia',"FileController@getFiles");
 Route::post('/admin/transparencia',"FileController@upload");
 Route::get('/get-transparencia','FileController@getFile');
+Route::delete('delete-file/{id}','FileController@deleteFile');
