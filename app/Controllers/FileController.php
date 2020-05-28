@@ -22,13 +22,8 @@ class FileController extends Controller
     public function getFile(Request $request)
     {
         
-        $arquivo = $request->input('arquivo');
-       $headers = [
-           "Content-Description" => "File Transfer",
-           "Content-Type" => "application/pdf"
-       ];
-      
-        return response()->download(public_path('/arquivos/').$arquivo,$arquivo,$headers);
+       $arquivo = $request->input('arquivo');
+        return response()->file(public_path('/arquivos/').$arquivo);
     }
 
     public function getFiles()
