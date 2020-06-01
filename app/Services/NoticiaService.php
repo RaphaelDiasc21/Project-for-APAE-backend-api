@@ -5,8 +5,9 @@
     use Illuminate\Http\Request;
     use App\Noticia;
     use App\Services\FotoService;
+use Illuminate\Support\Facades\DB;
 
-    class NoticiaService
+class NoticiaService
     {
         private $fotoService;
 
@@ -22,7 +23,7 @@
 
         public function getNoticia($id)
         {
-            return Noticia::find($id)->with('fotos')->get();
+            return Noticia::with('fotos')->get()->find($id);
         }
 
         public function create(Request $request)

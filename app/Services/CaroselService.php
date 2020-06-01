@@ -18,9 +18,17 @@
         public function create(Request $request)
         {
             $caroselEntity = new Carosel();
-            $carosel = $caroselEntity->save();
+            $caroselEntity->save();
+          
+            $this->fotoService->uploadFoto($request->file('fotos'),$caroselEntity->id,'carosel');
+        }
 
-            $this->fotoService->uploadFoto($request->file('fotos'),$carosel->id,'carosel');
+        public function deleteCarosel($id)
+        {
+            $carosel = Carosel::find($id);
+            $carosel->delete();
+            $this->deleteFoto($id);
+            return $carosel;
         }
 
         public function getCarosel()
@@ -35,6 +43,6 @@
 
         public function deleteFoto($id)
         {
-            return $this->fotoService->deleteFoto($id);
+            return $this->fotoService->destroyFoto($id,'carosel');
         }
     }

@@ -22,7 +22,7 @@
 
         public function getAlbum($id)
         {
-            return Galeria::find($id)->with('fotos')->get();
+            return Galeria::with('fotos')->get()->find($id);
         }
 
         public function create(Request $request)
@@ -39,6 +39,11 @@
         public function destroy($id)
         {
             $album = Galeria::find($id);
+            foreach($album->fotos as $foto)
+            {
+                $this->deleteFoto($foto->id);
+            }
+
             $album->delete();
             return $album;
         }
@@ -59,7 +64,7 @@
 
         public function deleteFoto($id)
         {
-            return $this->fotoService->deleteFoto($id);
+            return $this->fotoService->destroyFoto($id,'galeria');
            
         }
     }
