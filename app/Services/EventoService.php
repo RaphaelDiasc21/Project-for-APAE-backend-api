@@ -22,7 +22,7 @@
 
         public function getEvento($id)
         {
-            return Evento::find($id)->with('fotos')->get();
+            return Evento::with('fotos')->get()->find($id);
         }
 
         public function create(Request $request)

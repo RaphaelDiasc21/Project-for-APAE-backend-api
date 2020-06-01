@@ -25,16 +25,16 @@ Route::post("/admin/carosel/{id}","CaroselController@addFoto");
 // Evento
 Route::get('/eventos',"EventoController@index");
 Route::post('/admin/eventos',"EventoController@create");
-Route::get('/admin/eventos/{id}',"EventoController@getEvento");
+Route::get('/eventos/{id}',"EventoController@getEvento");
 Route::delete('/admin/eventos/{id}',"EventoController@delete");
 Route::put('/admin/eventos/{id}',"EventoController@update");
 Route::post('/admin/eventos/foto/{id}',"EventoController@addFoto");
-Route::delete('/admin/eventos/foto/{id}',"EventoController@deleteFoto");
+Route::delete('/admin/eventos/foto/{id_foto}',"EventoController@deleteFoto");
 
 // Noticia
 Route::get('/noticias',"NoticiaController@index");
 Route::post('/admin/noticias',"NoticiaController@create");
-Route::get('/admin/noticias/{id}',"NoticiaController@getNoticia");
+Route::get('/noticias/{id}',"NoticiaController@getNoticia");
 Route::delete('/admin/noticias/{id}',"NoticiaController@delete");
 Route::put('/admin/noticias/{id}',"NoticiaController@update");
 Route::post('/admin/noticias/foto/{id}',"NoticiaController@addFoto");
@@ -46,7 +46,19 @@ Route::get('/parceiros/{id}',"ParceiroController@getParceiro");
 Route::delete('/admin/parceiros/{id}',"ParceiroController@delete");
 Route::put('/admin/parceiros/{id}',"ParceiroController@update");
 
-// Informacoes
-Route::get('/informacoes',"InformacoesController@index");
-Route::post('/admin/informacoes',"InformacoesController@create");
-Route::put('/admin/informacoes/{id}',"InformacoesController@update");
+//Fale conosco
+Route::get("/fale","FaleController@index");
+Route::post("/fale","FaleController@create");
+Route::delete("admin/fale","FaleController@deleteFale");
+
+//Contribuições
+Route::get("/contribuicao","ContribuicaoController@index");
+Route::post("/contribuicao","ContribuicaoController@create");
+Route::delete("admin/contribuicao","ContribuicaoController@deleteFale");
+
+
+//Transparencia
+Route::get('/transparencia',"FileController@getFiles");
+Route::post('/admin/transparencia',"FileController@upload");
+Route::get('/get-transparencia','FileController@getFile');
+Route::delete('delete-file/{id}','FileController@deleteFile');
